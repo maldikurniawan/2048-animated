@@ -2,7 +2,7 @@ import React from 'react'
 
 const Cell = () => {
   return (
-    <div>Cell</div>
+    <div className='cell'></div>
   )
 }
 
