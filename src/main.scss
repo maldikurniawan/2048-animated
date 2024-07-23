@@ -14,6 +14,13 @@ body {
   font-size: 21px;
 }
 
+@media (max-width: 465px) {
+  body {
+    display: block;
+    /* Change to block or other desired display property */
+  }
+}
+
 .text {
   order: 2;
   padding-top: 40px;
@@ -53,6 +60,7 @@ body {
   padding: 10px 20px;
   border-radius: 7px;
   transition: color 0.3s ease, background-color 0.3s ease;
+
   &:hover {
     background-color: #d3386a;
     color: rgba(255, 255, 255, 1);
@@ -191,6 +199,7 @@ body {
   from {
     transform: scale(0);
   }
+
   to {
     transform: scale(1);
   }
