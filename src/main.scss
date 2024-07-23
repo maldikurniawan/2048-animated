@@ -1,8 +1,3 @@
-@font-face {
-  font-family: "Clear Sans";
-  src: url("../src/clear-sans.ttf") format("truetype");
-}
-
 body {
   display: flex;
   background-color: #57407c;
@@ -30,8 +25,8 @@ body {
 
 .board {
   order: 1;
-  width: 440px;
-  height: 440px;
+  width: 450px;
+  height: 450px;
   padding: 5px;
   background-color: #57407c;
   border-radius: 7px;
@@ -75,7 +70,7 @@ body {
   background-color: #3d2963;
   color: rgba(255, 255, 255, 0.5);
   min-width: 50px;
-  width: 70px;
+  width: 100px;
   padding: 5px 15px;
   border-radius: 7px;
 }
