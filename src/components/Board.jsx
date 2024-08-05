@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSpring, animated } from 'react-spring';
 import { useGesture } from '@use-gesture/react';
 import Tile from "./Tile";
@@ -6,6 +6,8 @@ import Cell from "./Cell";
 import { Board } from "../helper/index";
 import useEvent from '../hooks/useEvent';
 import GameOverlay from './GameOverlay';
+import megalovania from "../assets/megalovania.mp3";
+import { soundoff, soundon } from "../assets/icons";
 
 const BoardView = () => {
     const [board, setBoard] = useState(new Board());
@@ -76,6 +78,23 @@ const BoardView = () => {
         setBoard(new Board());
     };
 
+    // Music
+    const audioRef = useRef(new Audio(megalovania));
+    audioRef.current.volume = 0.4;
+    audioRef.current.loop = true;
+
+    const [isPlayingMusic, setIsPlayingMusic] = useState(true);
+
+    useEffect(() => {
+        if (isPlayingMusic) {
+            audioRef.current.play();
+        }
+
+        return () => {
+            audioRef.current.pause();
+        };
+    }, [isPlayingMusic]);
+
     return (
         <div>
             <div className='text-white text-center mt-2 font-bold text-2xl max-[500px]:text-xl max-[500px]:py-2'>Merge the same number to reach 2048!</div>
@@ -95,6 +114,14 @@ const BoardView = () => {
                 <a href="https://www.behance.net/romaincousin" target='_blank' className='hover:underline ml-1'>https://www.behance.net/romaincousin</a>
             </div>
             <a href="https://maldikurniawan.github.io/random_app/" className='hover:text-[#d3386a] text-white text-center flex justify-center mx-2' target='_blank'>Follow me here!</a>
+            <div className='absolute bottom-4 left-2'>
+                <img
+                    src={!isPlayingMusic ? soundoff : soundon}
+                    alt='jukebox'
+                    onClick={() => setIsPlayingMusic(!isPlayingMusic)}
+                    className='w-10 h-10 cursor-pointer object-contain'
+                />
+            </div>
         </div>
     );
 };
