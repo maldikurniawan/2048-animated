@@ -6,7 +6,7 @@ import Cell from "./Cell";
 import { Board } from "../helper/index";
 import useEvent from '../hooks/useEvent';
 import GameOverlay from './GameOverlay';
-import megalovania from "../assets/megalovania.mp3";
+import deathbyglamour from "../assets/deathbyglamour.mp3";
 import { soundoff, soundon } from "../assets/icons";
 
 const BoardView = () => {
@@ -79,7 +79,7 @@ const BoardView = () => {
     };
 
     // Music
-    const audioRef = useRef(new Audio(megalovania));
+    const audioRef = useRef(new Audio(deathbyglamour));
     audioRef.current.volume = 0.4;
     audioRef.current.loop = true;
 
