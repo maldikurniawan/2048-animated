@@ -124,7 +124,7 @@ const BoardView = () => {
                 </a>
             </div>
             <a
-                href="https://maldikurniawan.github.io/random_app/"
+                href="https://maldikurniawan.netlify.app/"
                 className="hover:text-pink-500 text-white text-center mt-2 flex justify-center"
                 target="_blank"
                 rel="noopener noreferrer"
