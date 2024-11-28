@@ -97,7 +97,9 @@ const BoardView = () => {
 
     return (
         <div>
-            <div className='text-white text-center mt-2 font-bold text-2xl max-[500px]:text-xl max-[500px]:py-2'>Merge the same number to reach 2048!</div>
+            <div className='text-white text-center mt-2 font-bold text-2xl max-[500px]:text-xl max-[500px]:py-2'>
+                Merge the same number to reach 2048!
+            </div>
             <div className='details-box'>
                 <div className='resetButton' onClick={resetGame}>New Game</div>
                 <div className='score-box'>
@@ -114,14 +116,20 @@ const BoardView = () => {
                 <a href="https://www.behance.net/romaincousin" target='_blank' className='hover:underline ml-1'>https://www.behance.net/romaincousin</a>
             </div>
             <a href="https://maldikurniawan.github.io/random_app/" className='hover:text-[#d3386a] text-white text-center flex justify-center mx-2' target='_blank'>Follow me here!</a>
-            <div className='absolute bottom-4 left-2'>
-                <img
-                    src={!isPlayingMusic ? soundoff : soundon}
-                    alt='jukebox'
-                    onClick={() => setIsPlayingMusic(!isPlayingMusic)}
-                    className='w-10 h-10 cursor-pointer object-contain'
-                />
-            </div>
+            <img
+                src={!isPlayingMusic ? soundoff : soundon}
+                onClick={() => setIsPlayingMusic(!isPlayingMusic)}
+                className='opacity-100 z-40 w-14 h-14 p-2'
+                style={{
+                    position: 'fixed',
+                    bottom: '20px',
+                    right: '20px',
+                    color: '#FFF',
+                    border: 'none',
+                    borderRadius: '5px',
+                    cursor: 'pointer'
+                }}
+            />
         </div>
     );
 };
