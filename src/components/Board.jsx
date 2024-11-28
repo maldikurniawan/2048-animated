@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useSpring, animated } from 'react-spring';
+import { animated } from 'react-spring';
 import { useGesture } from '@use-gesture/react';
 import Tile from "./Tile";
 import Cell from "./Cell";
@@ -97,7 +97,7 @@ const BoardView = () => {
 
     return (
         <div>
-            <div className='text-white text-center mt-2 font-bold text-2xl max-[500px]:text-xl max-[500px]:py-2'>
+            <div className="text-white text-center mt-2 font-bold text-2xl max-sm:text-xl max-sm:py-2">
                 Merge the same number to reach 2048!
             </div>
             <div className='details-box'>
@@ -112,10 +112,25 @@ const BoardView = () => {
                 {tiles}
                 <GameOverlay onRestart={resetGame} board={board} />
             </div>
-            <div className='text-center text-white text-xs text-nowrap mx-2'>Motion Graphics by Romain Cousin
-                <a href="https://www.behance.net/romaincousin" target='_blank' className='hover:underline ml-1'>https://www.behance.net/romaincousin</a>
+            <div className="text-center text-white text-xs mt-4 mx-2">
+                Motion Graphics by Romain Cousin
+                <a
+                    href="https://www.behance.net/romaincousin"
+                    target="_blank"
+                    className="hover:underline ml-1"
+                    rel="noopener noreferrer"
+                >
+                    https://www.behance.net/romaincousin
+                </a>
             </div>
-            <a href="https://maldikurniawan.github.io/random_app/" className='hover:text-[#d3386a] text-white text-center flex justify-center mx-2' target='_blank'>Follow me here!</a>
+            <a
+                href="https://maldikurniawan.github.io/random_app/"
+                className="hover:text-pink-500 text-white text-center mt-2 flex justify-center"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Follow me here!
+            </a>
             <img
                 src={!isPlayingMusic ? soundoff : soundon}
                 onClick={() => setIsPlayingMusic(!isPlayingMusic)}

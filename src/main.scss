@@ -3,18 +3,15 @@ body {
   background-color: #57407c;
   flex-direction: column;
   justify-content: center;
+  align-content: center;
   align-items: center;
   font-family: "Clear Sans", sans-serif;
   font-size: 21px;
-  margin: 0;
-  padding: 0;
-  height: 100vh;
 }
 
 @media (max-width: 465px) {
   body {
     display: block;
-    /* Change to block or other desired display property */
   }
 }
 
@@ -27,15 +24,12 @@ body {
 
 .board {
   order: 1;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Creates a 4x4 grid */
-  gap: 1px; /* Space between cells */
-  width: 90vw; /* 90% of the viewport width */
-  max-width: 450px; /* Maximum width for larger screens */
-  aspect-ratio: 1; /* Maintains a square aspect ratio */
-  padding: 1px;
+  width: 450px;
+  height: 450px;
+  padding: 5px;
   background-color: #57407c;
   border-radius: 7px;
+  outline: none;
   position: relative;
 }
 
@@ -48,7 +42,7 @@ body {
 .details-box {
   display: flex;
   align-items: center;
-  padding: 5px;
+  padding: 10px;
   justify-content: space-between;
 }
 
