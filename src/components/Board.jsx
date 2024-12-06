@@ -7,11 +7,13 @@ import { Board } from "../helper/index";
 import useEvent from '../hooks/useEvent';
 import GameOverlay from './GameOverlay';
 import deathbyglamour from "../assets/deathbyglamour.mp3";
-import { soundoff, soundon } from "../assets/icons";
+import { TbMusic, TbMusicOff } from 'react-icons/tb';
 
 const BoardView = () => {
     const [board, setBoard] = useState(new Board());
     const [tileAnimations, setTileAnimations] = useState({});
+    const [isPlayingMusic, setIsPlayingMusic] = useState(false);
+    const [showMusicModal, setShowMusicModal] = useState(true);
 
     const handleKeyDown = (event) => {
         if (board.hasWon()) {
@@ -80,14 +82,15 @@ const BoardView = () => {
 
     // Music
     const audioRef = useRef(new Audio(deathbyglamour));
-    audioRef.current.volume = 0.4;
-    audioRef.current.loop = true;
 
-    const [isPlayingMusic, setIsPlayingMusic] = useState(true);
-
+    // Ensure audio plays when the component is mounted
     useEffect(() => {
+        audioRef.current.volume = 0.8;
+        audioRef.current.loop = true;
         if (isPlayingMusic) {
             audioRef.current.play();
+        } else {
+            audioRef.current.pause();
         }
 
         return () => {
@@ -97,6 +100,31 @@ const BoardView = () => {
 
     return (
         <div>
+            {showMusicModal && (
+                <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex justify-center items-center z-50">
+                    <div className="bg-white p-6 shadow-lg text-center rounded-lg">
+                        <h2 className="text-2xl text-black font-bold mb-4">Play Background Music?</h2>
+                        <p className="mb-4 text-black">Would you like to turn on the background music for this game?</p>
+                        <div className="flex justify-center space-x-4">
+                            <button
+                                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-800"
+                                onClick={() => {
+                                    setIsPlayingMusic(true);
+                                    setShowMusicModal(false);
+                                }}
+                            >
+                                Yes
+                            </button>
+                            <button
+                                className="bg-red-600 text-white px-4 py-2 rounded hover:bg-gray-800"
+                                onClick={() => setShowMusicModal(false)}
+                            >
+                                No
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
             <div className='details-box'>
                 <div className='resetButton' onClick={resetGame}>New Game</div>
                 <div className='score-box'>
@@ -110,7 +138,7 @@ const BoardView = () => {
                 <GameOverlay onRestart={resetGame} board={board} />
             </div>
             <div className="fixed bottom-[20px] left-[20px]">
-                <div className="text-left text-white text-xs">
+                <div className="text-left text-white text-sm">
                     Motion Graphics by
                     <a
                         href="https://www.behance.net/romaincousin"
@@ -118,22 +146,21 @@ const BoardView = () => {
                         className="hover:underline ml-1"
                         rel="noopener noreferrer"
                     >
-                        https://www.behance.net/romaincousin
+                        Romain Cousin
                     </a>
                 </div>
                 <a
                     href="https://maldikurniawan.netlify.app/"
-                    className="hover:text-purple-600 text-white mt-2 block"
+                    className="text-white font-bold hover:text-blue-600 tracking-widest"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    Follow me here!
+                    Follow Me Here!
                 </a>
             </div>
-            <img
-                src={!isPlayingMusic ? soundoff : soundon}
+            <button
                 onClick={() => setIsPlayingMusic(!isPlayingMusic)}
-                className='opacity-100 z-40 w-14 h-14 p-2'
+                className='opacity-100 z-40'
                 style={{
                     position: 'fixed',
                     bottom: '20px',
@@ -142,8 +169,13 @@ const BoardView = () => {
                     border: 'none',
                     borderRadius: '5px',
                     cursor: 'pointer'
-                }}
-            />
+                }}>
+                {!isPlayingMusic ?
+                    <TbMusicOff className='w-10 h-10 p-2 bg-blue-600 rounded-full' />
+                    :
+                    <TbMusic className='w-10 h-10 p-2 bg-blue-600 rounded-full' />
+                }
+            </button>
         </div>
     );
 };
