@@ -14,8 +14,8 @@ const BoardView = () => {
     const [tileAnimations, setTileAnimations] = useState({});
     const [isPlayingMusic, setIsPlayingMusic] = useState(false);
     const [showMusicModal, setShowMusicModal] = useState(true);
-    const [highScore, setHighScore] = useState(() => {
-        return parseInt(localStorage.getItem('highScore')) || 0; // Get high score from localStorage
+    const [highScore2048, setHighScore2048] = useState(() => {
+        return parseInt(localStorage.getItem('highScore2048')) || 0; // Get high score from localStorage
     });
 
     const handleKeyDown = (event) => {
@@ -86,9 +86,9 @@ const BoardView = () => {
     };
 
     const updateScore = (currentScore) => {
-        if (currentScore > highScore) {
-            setHighScore(currentScore); // Update high score
-            localStorage.setItem('highScore', currentScore); // Save to localStorage
+        if (currentScore > highScore2048) {
+            setHighScore2048(currentScore); // Update high score
+            localStorage.setItem('highScore2048', currentScore); // Save to localStorage
         }
     };
 
@@ -154,7 +154,7 @@ const BoardView = () => {
                     New Game
                 </div>
                 <div className="fixed top-5 right-2.5 bg-[#3d2963] text-white/50 py-2 px-6 whitespace-nowrap rounded-lg w-[170px]">
-                    <div className="text-sm uppercase text-center">HighScore: {highScore}</div>
+                    <div className="text-sm uppercase text-center">HighScore: {highScore2048}</div>
                 </div>
                 <div className="fixed top-16 right-2.5 bg-[#3d2963] text-white/50 py-2 px-6 rounded-lg w-[170px]">
                     <div className="text-sm text-center">SCORE: {board.score}</div>
