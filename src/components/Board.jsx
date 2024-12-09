@@ -153,11 +153,11 @@ const BoardView = () => {
                 >
                     New Game
                 </div>
-                <div className="fixed top-5 right-2.5 bg-[#3d2963] text-white/50 py-2 px-6 whitespace-nowrap rounded-lg w-[170px]">
-                    <div className="text-sm uppercase text-center">HighScore: {highScore2048}</div>
+                <div className="fixed top-5 right-2.5 bg-[#3d2963] text-white/50 py-2 px-6 whitespace-nowrap rounded-lg w-[175px]">
+                    <div className="text-sm uppercase text-center">High Score: {highScore2048}</div>
                 </div>
-                <div className="fixed top-16 right-2.5 bg-[#3d2963] text-white/50 py-2 px-6 rounded-lg w-[170px]">
-                    <div className="text-sm text-center">SCORE: {board.score}</div>
+                <div className="fixed top-16 right-2.5 bg-[#3d2963] text-white/50 py-2 px-6 rounded-lg w-[175px]">
+                    <div className="text-sm text-center">Your Score: {board.score}</div>
                 </div>
             </div>
             <div className='board'>
