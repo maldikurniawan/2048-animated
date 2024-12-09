@@ -14,6 +14,9 @@ const BoardView = () => {
     const [tileAnimations, setTileAnimations] = useState({});
     const [isPlayingMusic, setIsPlayingMusic] = useState(false);
     const [showMusicModal, setShowMusicModal] = useState(true);
+    const [highScore, setHighScore] = useState(() => {
+        return parseInt(localStorage.getItem('highScore')) || 0; // Get high score from localStorage
+    });
 
     const handleKeyDown = (event) => {
         if (board.hasWon()) {
@@ -23,9 +26,10 @@ const BoardView = () => {
             let direction = event.keyCode - 37;
             let boardClone = Object.assign(Object.create(Object.getPrototypeOf(board)), board);
             let newBoard = boardClone.move(direction);
+            updateScore(newBoard.score); // Update the score
             setBoard(newBoard);
         }
-    }
+    };
 
     useEvent("keydown", handleKeyDown);
 
@@ -42,6 +46,7 @@ const BoardView = () => {
             if (!down) {
                 let boardClone = Object.assign(Object.create(Object.getPrototypeOf(board)), board);
                 let newBoard = boardClone.move(direction);
+                updateScore(newBoard.score); // Update the score
                 setBoard(newBoard);
                 setTileAnimations({});
             } else {
@@ -78,6 +83,13 @@ const BoardView = () => {
 
     const resetGame = () => {
         setBoard(new Board());
+    };
+
+    const updateScore = (currentScore) => {
+        if (currentScore > highScore) {
+            setHighScore(currentScore); // Update high score
+            localStorage.setItem('highScore', currentScore); // Save to localStorage
+        }
     };
 
     // Music
@@ -125,11 +137,27 @@ const BoardView = () => {
                     </div>
                 </div>
             )}
-            <div className='details-box'>
-                <div className='resetButton' onClick={resetGame}>New Game</div>
-                <div className='score-box'>
-                    <div className='score-header'>SCORE</div>
-                    <div>{board.score}</div>
+            <div className='max-[465px]:hidden'>
+                <div className='details-box'>
+                    <div className='resetButton' onClick={resetGame}>New Game</div>
+                    <div className='score-box'>
+                        <div className='score-header'>SCORE</div>
+                        <div>{board.score}</div>
+                    </div>
+                </div>
+            </div>
+            <div className="min-[465px]:hidden mb-28">
+                <div
+                    className="fixed top-5 left-3 bg-[#3d2963] hover:bg-[#d3386a] text-white/50 py-2 px-4 rounded-lg cursor-pointer"
+                    onClick={resetGame}
+                >
+                    New Game
+                </div>
+                <div className="fixed top-5 right-3 bg-[#3d2963] text-white/50 py-2 px-6 whitespace-nowrap rounded-lg w-[150px]">
+                    <div className="text-sm uppercase text-center">HighScore: {highScore}</div>
+                </div>
+                <div className="fixed top-16 right-3 bg-[#3d2963] text-white/50 py-2 px-6 rounded-lg w-[150px]">
+                    <div className="text-sm text-center">SCORE: {board.score}</div>
                 </div>
             </div>
             <div className='board'>
@@ -151,7 +179,7 @@ const BoardView = () => {
                 </div>
                 <a
                     href="https://maldikurniawan.netlify.app/"
-                    className="text-white font-bold hover:text-blue-600 tracking-widest"
+                    className="text-white font-bold hover:text-[#d3386a] tracking-widest"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
