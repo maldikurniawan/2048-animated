@@ -148,15 +148,15 @@ const BoardView = () => {
             </div>
             <div className="min-[465px]:hidden mb-28">
                 <div
-                    className="fixed top-5 left-3 bg-[#3d2963] hover:bg-[#d3386a] text-white/50 py-2 px-4 rounded-lg cursor-pointer"
+                    className="fixed top-5 left-2.5 bg-[#3d2963] hover:bg-[#d3386a] text-white/50 py-2 px-4 rounded-lg cursor-pointer"
                     onClick={resetGame}
                 >
                     New Game
                 </div>
-                <div className="fixed top-5 right-3 bg-[#3d2963] text-white/50 py-2 px-6 whitespace-nowrap rounded-lg w-[150px]">
+                <div className="fixed top-5 right-2.5 bg-[#3d2963] text-white/50 py-2 px-6 whitespace-nowrap rounded-lg w-[170px]">
                     <div className="text-sm uppercase text-center">HighScore: {highScore}</div>
                 </div>
-                <div className="fixed top-16 right-3 bg-[#3d2963] text-white/50 py-2 px-6 rounded-lg w-[150px]">
+                <div className="fixed top-16 right-2.5 bg-[#3d2963] text-white/50 py-2 px-6 rounded-lg w-[170px]">
                     <div className="text-sm text-center">SCORE: {board.score}</div>
                 </div>
             </div>
